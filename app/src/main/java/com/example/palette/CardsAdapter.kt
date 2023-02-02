@@ -1,9 +1,11 @@
 package com.example.palette
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.Unit as Unit
 
@@ -35,9 +37,11 @@ class CardsAdapter(var items: ArrayList<Tarjeta>) : RecyclerView.Adapter<CardsAd
         return TarjViewHolder(itemView)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(viewHolder: TarjViewHolder, pos: Int) {
         val item = items.get(pos)
         viewHolder.bindTarjeta(item,onClick)
+        viewHolder.itemView.transitionName = "$pos"
     }
 
     override fun getItemCount(): Int {
